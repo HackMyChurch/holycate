@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<INCLURE{fond=inc/head}>
+<body>
+<INCLURE{fond=inc/header}>    
+    <div class="content">
+	<BOUCLE_ListeArticles(RUBRIQUES){!par num titre}{racine}>
+    <article class="underline">
+    	<h2 #EDIT{titre}><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+		[<div class="date">(#DESCRIPTIF|adaptive_images{640})</div>]
+    </article>
+	</BOUCLE_ListeArticles>
+    </div>
+<INCLURE{fond=inc/footer}>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<BOUCLE_Rubrique(RUBRIQUES){id_rubrique}>
+<!DOCTYPE html>
+<html>
+<INCLURE{fond=inc/head}{id_rubrique}>
+<body>
+<INCLURE{fond=inc/header}{id_rubrique}>    
+    <div class="content">
+	<div class="cartouche">
+	<h1 class="#EDIT{titre}">#TITRE</h1>
+	[<div class="date #EDIT{descriptif}">(#DESCRIPTIF|adaptive_images{640})</div>]
+		[<div class="date #EDIT{texte}">(#TEXTE|adaptive_images{640})</div>]
+	</div>
+	<?php if ((isset($GLOBALS['visiteur_session']['id_auteur']) AND $GLOBALS['visiteur_session']['id_auteur'])) { ?>
+	<BOUCLE_ListeEtapes(RUBRIQUES){par num titre}{id_parent}>
+    <article class="underline">
+    	<h2 class="#EDIT{titre}"><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+		[<div class="date #EDIT{descriptif}">(#DESCRIPTIF|adaptive_images{640})</div>]
+		<B_ListeArticles>
+		<ul>
+		<BOUCLE_ListeArticles(ARTICLES){!par num titre}{id_rubrique}>
+			<li #EDIT{titre}><a href="#URL_ARTICLE">#TITRE</a></li>
+			
+		</BOUCLE_ListeArticles>
+		</ul>
+		</B_ListeArticles>
+    </article>
+	</BOUCLE_ListeEtapes>
+	<div class="qrcode">[(#URL_RUBRIQUE|url_absolue|qrcode{10,L})]</div>
+	<?php } ?>
+    </div>
+<INCLURE{fond=inc/footer}>
+</body>
+</html>
+</BOUCLE_Rubrique>

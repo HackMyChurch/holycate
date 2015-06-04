@@ -1,0 +1,26 @@
+<BOUCLE_Article(ARTICLES){id_article}>
+<!DOCTYPE html>
+<html>
+<INCLURE{fond=inc/head}{id_article}>
+<body>
+<INCLURE{fond=inc/header}{id_article}{id_rubrique}>    
+    <div class="content">
+	<div class="cartouche">
+	<h1>#INFO_TITRE{rubrique,#ID_SECTEUR}</h1>
+	[<div class="date">(#INFO_DESCRIPTIF{rubrique,#ID_SECTEUR})</div>]
+	</div>
+    <article class="underline">
+    	<h2 class="#EDIT{titre}">#TITRE</h2>
+		[<div class="date #EDIT{descriptif}">(#DESCRIPTIF|adaptive_images{640})</div>]
+		[<div class="date #EDIT{texte}">(#TEXTE|adaptive_images{640})</div>]
+		[<div class="date #EDIT{ps}">(#PS|adaptive_images{640})</div>]
+    </article>
+	<INCLURE{fond=comments}{id_article}>
+	<?php if ((isset($GLOBALS['visiteur_session']['id_auteur']) AND $GLOBALS['visiteur_session']['id_auteur'])) { ?>
+	<div class="qrcode">[(#URL_SITE_SPIP|concat{/#ID_ARTICLE}|qrcode{10,H})]</div>
+	<?php } ?>
+    </div>
+<INCLURE{fond=inc/footer}>
+</body>
+</html>
+</BOUCLE_Article>

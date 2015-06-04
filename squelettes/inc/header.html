@@ -1,0 +1,35 @@
+#SET{logo,#LOGO_SITE_SPIP}
+<BOUCLE_Rubrique(RUBRIQUES){id_rubrique}>
+[(#LOGO_RUBRIQUE_NORMAL|oui)#SET{logo,#LOGO_RUBRIQUE_NORMAL}]
+</BOUCLE_Rubrique>
+
+		[(#SET{Masque,[(#CHEMIN{images/masque.png})]})]
+		[(#SET{LargeurMasque,[(#GET{Masque}|largeur)]})]
+		[(#SET{HauteurMasque,[(#GET{Masque}|hauteur)]})]
+		[(#SET{Cadre,[(#CHEMIN{images/overlay.png})]})]
+		[(#SET{LargeurCadre,[(#GET{Cadre}|largeur)]})]
+		[(#SET{HauteurCadre,[(#GET{Cadre}|hauteur)]})]
+		[(#SET{ImageCadree,
+			[(#GET{logo}|image_reduire{#GET{LargeurMasque},0}
+			|image_recadre{#GET{LargeurMasque},#GET{HauteurMasque},center}
+			|image_masque{#GET{Masque}}
+			|image_masque{#GET{Cadre},mode=normal}
+			|image_reduire{[(#GET{LargeurCadre,[(#ENV{Largeurcontent_central})]})],0}
+			)]}
+		)]
+	<header>
+        <div class="logo">
+            <a href="#URL_SITE_SPIP">
+                [<img src="(#GET{ImageCadree}|extraire_attribut{src})" alt="" style="width:100%" />]
+            </a>
+        </div>
+		<!--<nav class="vertical menu">
+            <ul>
+                <li><a href="#URL_SITE_SPIP">Home page</a></li>
+                <li><a href="#URL_PAGE{basic_markup}">Basic Markup</a></li>
+                <li><a href="#URL_PAGE{contact}">Contact</a></li>
+            </ul>
+        </nav> 
+		-->
+        <div class="clear"></div>
+    </header>
